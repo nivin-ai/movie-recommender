@@ -6,6 +6,8 @@ import os
 import numpy as np
 import random
 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 load_dotenv()   #loading environment variables
 
@@ -13,7 +15,20 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 tmdb_api_key = os.getenv("TMDB_API_KEY")
 
 openai.api_key = openai_api_key
+
+
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 client = openai.OpenAI()
 
 
