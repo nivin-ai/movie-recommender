@@ -13,7 +13,6 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 tmdb_api_key = os.getenv("TMDB_API_KEY")
 
 openai.api_key = openai_api_key
-
 app = FastAPI()
 client = openai.OpenAI()
 
@@ -63,6 +62,10 @@ class MoodRequest(BaseModel):
 @app.post("/recommend/")
 def recommend_movie(req: MoodRequest):
     mood = req.mood
+
+    print(f"API Key Length: {len(openai.api_key)}")
+    print(f"API Key Starts With: {openai.api_key[:5]}****")
+    
     prompt = f'''
               Based on the user’s mood ({mood}), select the most suitable movie genre from: 
               Action, Adventure, Comedy, Drama, Horror, Science Fiction, Romance, Mystery. 

@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://backend:8000/recommend/"  # Your FastAPI server
+API_URL = "http://localhost:8000/recommend/"  # Your FastAPI server
 
 st.set_page_config(page_title="AI Movie Recommender", layout="centered")
 
